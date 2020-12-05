@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:weather_app/location.dart';
+import 'package:weather_app/mainScreen.dart';
+import 'package:weather_app/weather.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -7,7 +9,7 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  LocationHelper locationData ;
+  LocationHelper locationData;
 
   Future<void> getLocation() async {
     locationData = LocationHelper();
@@ -17,7 +19,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
     }
   }
 
-
   Future<void> getWeatherData() async {
     // 1. Get GPS coordinates
     // 2. API call
@@ -26,7 +27,21 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
     // Use alt+enter in case of errors
     await getLocation();
+    WeatherData weatherData = WeatherData(locationData: locationData);
+    await weatherData.getCurrentTemperature();
 
+    if (weatherData.currentTemperature == null ||
+        weatherData.currentCondition == null) {
+      // todo: Handle no weather
+    }
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) {
+          return MainScreen();
+        },
+      ),
+    );
   }
 
   @override
@@ -35,15 +50,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
     getWeatherData();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Center(
-          child: CircularProgressIndicator(
-        backgroundColor: Colors.orange,
-      ),),
+        child: CircularProgressIndicator(
+          backgroundColor: Colors.orange,
+        ),
+      ),
     );
   }
 }
