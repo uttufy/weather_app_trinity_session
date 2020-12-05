@@ -28,7 +28,7 @@ class WeatherData {
       var currentWeather = jsonDecode(data);
 
       try {
-        currentTemperature = currentWeather['main']['temp'];
+        currentTemperature = currentWeather['main']['temp'].toDouble();
         currentCondition = currentWeather['weather'][0]['id'];
       } catch (e) {
         print(e);
@@ -42,20 +42,20 @@ class WeatherData {
     if (currentCondition < 600) {
       return WeatherDisplayData(
         weatherIcon: Icon(Icons.cloud),
-        weatherImage: AssetImage('assets/cloud.png'),
+        weatherImage: AssetImage('asset/cloud.jpg'),
       );
     } else {
       var now = new DateTime.now();
 
       if (now.hour >= 15) {
         return WeatherDisplayData(
-          weatherImage: AssetImage('assets/night.png'),
+          weatherImage: AssetImage('asset/night.jpg'),
           weatherIcon: Icon(Icons.motion_photos_on_outlined),
         );
       } else {
         return WeatherDisplayData(
           weatherIcon: Icon(Icons.flash_auto),
-          weatherImage: AssetImage('assets/sunny.png'),
+          weatherImage: AssetImage('asset/sunny.jpg'),
         );
       }
     }

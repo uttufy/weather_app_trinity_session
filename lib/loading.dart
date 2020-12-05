@@ -38,7 +38,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
       context,
       MaterialPageRoute(
         builder: (BuildContext context) {
-          return MainScreen();
+          return MainScreen(weatherData: weatherData,);
         },
       ),
     );
