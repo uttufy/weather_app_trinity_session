@@ -18,11 +18,14 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
 
-  void getWeatherData(){
+  Future<void> getWeatherData() async {
     // 1. Get GPS coordinates
     // 2. API call
     // 3. Json response Parsing
     // 4. Parsed to be transfered to Main Screen
+
+    // Use alt+enter in case of errors
+    await getLocation();
 
   }
 

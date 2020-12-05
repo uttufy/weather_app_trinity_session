@@ -11,6 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   location: ^3.1.0
+  http: ^0.12.2
 
   cupertino_icons: ^1.0.1
 
