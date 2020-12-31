@@ -1,6 +1,6 @@
 # weather_app
 
-This is for session 
+A simple weather app that shows weather based on current location of device.
 
 ## Getting Started
 
